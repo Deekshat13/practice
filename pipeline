@@ -1,9 +1,7 @@
-pipeline {
-    agent any
-    
-    stages {
-        stage('Execute Flask App') {
-            steps {
+stages {
+    stage('Execute Flask App') {
+        steps {
+            timeout(time: 1, unit: 'MINUTES') {  // Adjust the timeout duration as needed
                 sh 'python3 get_api.py'
             }
         }
