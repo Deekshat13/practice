@@ -7,27 +7,12 @@ pipeline {
                 script {
                     def pythonScript = 'python3 get_api.py'
 
-                    // Run the Flask application in the background
-                    def proc = bat(script: pythonScript, returnStatus: true, wait: false)
-
-                    // Wait for a specific condition (e.g., Flask app is ready)
-                    timeout(time: 10, unit: 'SECONDS') {
-                        waitUntil {
-                            return proc.exitValue() != null
-                        }
-                    }
+                    // Run the Flask application
+                    sh returnStatus: true, script: pythonScript
 
                     // Check the exit code of the Flask app
-                    if (proc.exitValue() == 0) {
-                        echo "Flask App completed successfully."
-                    } else {
-                        error "Flask App execution failed with exit code ${proc.exitValue()}"
-                    }
-
-                    // Stop the pipeline if the Flask app failed
-                    if (proc.exitValue() != 0) {
-                        currentBuild.result = 'FAILURE'
-                        error "Pipeline stopped due to Flask App failure."
+                    if (currentBuild.resultIsWorseOrEqualTo('FAILURE')) {
+                        error "Flask App execution failed."
                     }
                 }
             }
