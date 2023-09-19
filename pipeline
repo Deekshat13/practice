@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Execute Flask App') {
+            steps {
+                sh 'python3 get_api.py'
+            }
+        }
+    }
+}
