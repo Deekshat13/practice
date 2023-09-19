@@ -1,4 +1,4 @@
-ef check_number(number):
+def check_number(number):
     # Check if the score is more than or equal to 70
     if number >= 70:
         return "You have passed"
