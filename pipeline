@@ -1,14 +1,50 @@
 pipeline {
     agent any
 
+ 
+
     stages {
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    def imageName = 'deekshatadikamalla@gmail.com'
+                    def dockerfile = 'Dockerfile'  // Assuming your Dockerfile is in the project root
+
+ 
+
+                    // Build Docker image
+                    sh "docker build -t $flask-dock -f $Dockerfile ."
+
+ 
+
+                    // Push Docker image to Docker Hub
+                    sh "docker login -u deekshatadikamalla@gmail.com -p Deeksha@2000>>"
+                    sh "docker push $flask-dock"
+                }
+            }
+        }
+
+ 
+
+        stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+        }
+
+ 
+
         stage('Execute Flask App') {
             steps {
                 script {
                     def pythonScript = 'python3 get_api.py'
 
+ 
+
                     // Run the Flask application
                     sh returnStatus: true, script: pythonScript
+
+ 
 
                     // Check the exit code of the Flask app
                     if (currentBuild.resultIsWorseOrEqualTo('FAILURE')) {
