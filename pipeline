@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                sh 'cd "Flask GET Rest API" && ls'
+                //sh 'cd "Flask GET Rest API" && ls'
                 sh 'docker build -t flask -f Dockerfile .'
             }
         }
