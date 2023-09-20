@@ -1,46 +1,41 @@
-pipeline {
+pipeline{
+
     agent any
 
-    //environment {
-        // Define environment variables
-        //DOCKER_IMAGE_NAME = '/fdeekshat13/tdeekshalask-dock' // Adjust to your Docker Hub username and image name
-        //DOCKERFILE_PATH = 'Dockerfile' // Assuming your Dockerfile is in the project root
+   // environment {
+       // DOCKERHUB_CREDENTIALS=credentials('dockerhub')
     //}
 
-    stages {
-        stage('Build and Push Docker Image') {
-            steps {
-                script {
-                    // Build Docker image
-                    sh "docker build -t flaskdock -f Dockerfile ."
 
-                    // Push Docker image to Docker Hub
-                    sh "docker login -u deekshatadikamalla@gmail.com -p Deeksha@2000>>"
-                    sh "docker push \$flaskdock"
-                }
-            }
-        }
-
-        stage('Checkout Code') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Execute Flask App') {
-            steps {
-                script {
-                    def pythonScript = 'python3 get_api.py'
-
-                    // Run the Flask application
-                    sh returnStatus: true, script: pythonScript
-
-                    // Check the exit code of the Flask app
-                    if (currentBuild.resultIsWorseOrEqualTo('FAILURE')) {
-                        error "Flask App execution failed."
-                    }
-                }
-            }
-        }
+       stage('Build') {
+    steps {
+        sh 'pwd'
+        sh 'ls'
+        sh 'cd "Flask GET Rest API" && ls'
+        sh 'docker build -t flask -f Dockerfile .'
     }
+}
+
+ 
+
+        /*stage('Login') {
+
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $$DOCKERHUB_CREDENTIALS_USR --passsword-stdin'
+            }
+        }
+        stage('Push') {
+
+            steps {
+                sh 'docker push sainadh01/flaskapp_test:latest'
+            }
+        }*/
+    }
+
+    /*post {
+        always {
+            sh 'docker logout'
+        }
+    }*/
+
 }
