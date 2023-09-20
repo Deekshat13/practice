@@ -12,11 +12,11 @@ pipeline {
             steps {
                 script {
                     // Build Docker image
-                    sh "docker build -t \$flask-dock -f \$Dockerfile ."
+                    sh "docker build -t \$flaskdock -f \$Dockerfile ."
 
                     // Push Docker image to Docker Hub
                     sh "docker login -u deekshatadikamalla@gmail.com -p Deeksha@2000"
-                    sh "docker push \$flask-dock"
+                    sh "docker push \$flaskdock"
                 }
             }
         }
