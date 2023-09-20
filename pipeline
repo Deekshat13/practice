@@ -8,13 +8,13 @@ pipeline{
 
 
        stage('Build') {
-    steps {
-        sh 'pwd'
-        sh 'ls'
-        sh 'cd "Flask GET Rest API" && ls'
-        sh 'docker build -t flask -f Dockerfile .'
-    }
-}
+            steps {
+                sh 'pwd'
+                sh 'ls'
+                sh 'cd "Flask GET Rest API" && ls'
+                sh 'docker build -t flask -f Dockerfile .'
+                    }
+            }
 
  
 
