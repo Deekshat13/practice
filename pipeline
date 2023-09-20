@@ -12,25 +12,5 @@ pipeline {
         }
         
         // Add more stages as needed
-        
-        /*
-        stage('Login') {
-            steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $$DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
-        
-        stage('Push') {
-            steps {
-                sh 'docker push sainadh01/flaskapp_test:latest'
-            }
-        }
-        */
-    }
-    
-    /*post {
-        always {
-            sh 'docker logout'
-        }
-    }*/
+}
 }
