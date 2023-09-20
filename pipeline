@@ -1,18 +1,18 @@
 pipeline {
     agent any
 
-    environment {
+    //environment {
         // Define environment variables
-        DOCKER_IMAGE_NAME = '/fdeekshat13/tdeekshalask-dock' // Adjust to your Docker Hub username and image name
-        DOCKERFILE_PATH = 'Dockerfile' // Assuming your Dockerfile is in the project root
-    }
+        //DOCKER_IMAGE_NAME = '/fdeekshat13/tdeekshalask-dock' // Adjust to your Docker Hub username and image name
+        //DOCKERFILE_PATH = 'Dockerfile' // Assuming your Dockerfile is in the project root
+    //}
 
     stages {
         stage('Build and Push Docker Image') {
             steps {
                 script {
                     // Build Docker image
-                    sh "docker build -t \$flaskdock -f \$Dockerfile ."
+                    sh "sudo docker build -t \$flaskdock -f \$Dockerfile ."
 
                     // Push Docker image to Docker Hub
                     sh "docker login -u deekshatadikamalla@gmail.com -p Deeksha@2000>>"
