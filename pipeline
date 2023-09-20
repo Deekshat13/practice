@@ -30,7 +30,7 @@ pipeline{
                 sh 'docker push sainadh01/flaskapp_test:latest'
             }
         }*/
-    }
+    
 
     /*post {
         always {
