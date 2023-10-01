@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY get_api.py /app
-COPY config.json
+COPY config.json /app
 # Install Flask
 RUN pip install flask
 
