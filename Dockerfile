@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
-ENV FLASK_APP movies.py
+ENV FLASK_APP get_api.py
 # Set the working directory in the container
 WORKDIR /app
 
