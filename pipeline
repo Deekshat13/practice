@@ -1,11 +1,11 @@
 pipeline {
     agent any
     environment {
-        EC2_HOST = '13.49.65.94'
+        EC2_HOST = '13.51.156.108'
         EC2_USER = 'ubuntu'
     }
     stages {
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 //dir('Flask GET Rest API') {
                     sh 'ls'
@@ -20,7 +20,7 @@ pipeline {
                 sh 'docker tag flask deekshat13/tdeeksha:flask'
                 sh "docker push deekshat13/tdeeksha:flask"
             }
-        }*/
+        }
 
         stage('Pull Docker Image on EC2') {
             steps {
